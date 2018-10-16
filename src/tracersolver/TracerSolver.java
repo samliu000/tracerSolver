@@ -1,29 +1,21 @@
 package tracerSolver;
-import java.util.Scanner;
-import java.util.Vector;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.LinkedList; 
 import java.util.Queue;
-import java.util.Map;
-import java.lang.Math;
-import java.util.Set;
-import java.io.IOException;
+
 
 public class TracerSolver {
 	private int[][] grid;
-	private int numRow;
-	private int numCol;
-	private int startRow;
-	private int startCol;
-	Vector<Point> directions;
+	private final int numRow;
+	private final int numCol;
+	ArrayList<Point> directions;
 	      
 	public TracerSolver(int numRow, int numCol, int startRow, int startCol) {
 		this.numRow = numRow;
 		this.numCol = numCol;
-		this.startRow = startRow;
-		this.startCol = startCol;
+
 		grid = new int[numRow][numCol];
-		directions = new Vector<>();               
+		directions = new ArrayList<>();               
 		for(int i = 0; i < numRow; i++) {
 			for(int j = 0; j < numCol; j++) {
 				grid[i][j] = 1;
@@ -32,7 +24,7 @@ public class TracerSolver {
 		grid[startRow][startCol] = 0;
 	}
 	
-	public Vector<Point> getDirections(){
+	public ArrayList<Point> getDirections(){
 		return directions;
 	}
 	
@@ -49,8 +41,8 @@ public class TracerSolver {
 	
 	private Queue<Point> possibleMoves(int currentRow, int currentCol){
             Queue<Point> directionList = new LinkedList<>();
-            for(int r = currentRow - 1; r < currentRow + 2 && r < numRow; r++){
-                for(int c = currentCol - 1; c < currentCol + 2 && c < numCol; c++){
+            for(int r = currentRow - 1; r < Math.min(currentRow + 2, numRow); r++){
+                for(int c = currentCol - 1; c < Math.min(currentCol + 2, numCol); c++){
                     //only considers the neighbors in cardinal directions
                     if((Math.abs(currentRow - r) + Math.abs(currentCol - c)) == 1 && r >= 0 && c >= 0){
                         if(grid[r][c] != 0) {
@@ -92,11 +84,11 @@ public class TracerSolver {
             return false;
 	}
 	
-	public static Vector<String> pointToDirectionConverter(Vector<Point> pointsList, int startRow, int startCol){
-            Vector<String> returnList = new Vector<>();
+	public static ArrayList<String> pointToDirectionConverter(ArrayList<Point> pointsList, int startRow, int startCol){
+            ArrayList<String> returnList = new ArrayList<>();
             Point previous = new Point(startRow, startCol);
             for(int i = 0; i < pointsList.size(); i++) {
-                Point currentMove = pointsList.elementAt(i);
+                Point currentMove = pointsList.get(i);
                 if(currentMove.x > previous.x) {
                         returnList.add("Down");
                 } else if(currentMove.x < previous.x) {
