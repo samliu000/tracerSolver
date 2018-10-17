@@ -1,4 +1,4 @@
-public static void main(String[] args) {
+	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Begin?");
 		while(!in.next().toLowerCase().equals("n")) {
@@ -14,7 +14,7 @@ public static void main(String[] args) {
 			int startCol = in.nextInt();
 			
 			//constructs object
-			tracerSolver grid = new tracerSolver(row, col, startRow, startCol);
+			TracerSolver grid = new TracerSolver(row, col, startRow, startCol);
 			
 			//repeatedly asks the user if there are any spaces to mark
 			System.out.println("Would you like to remove any blocks? N for no; Any other key for Yes");
@@ -41,7 +41,10 @@ public static void main(String[] args) {
 				Vector<String> stringForm = pointToDirectionConverter(listOfMoves, startRow, startCol);
 				
 				//prints out solution steps in the form of directional movement
+				System.out.println();
+				System.out.println("Directional Instructions: ");
 				System.out.println(stringForm.toString());
+				System.out.println();
 				
 				//constructs and initializes a grid to give a visual representation of the solution
 				int[][] numberedGrid = new int[row][col];
@@ -50,12 +53,13 @@ public static void main(String[] args) {
 					int col1 = listOfMoves.elementAt(i - 1).getY();
 					numberedGrid[row1][col1] = i;
 				}
-				convertToString(numberedGrid, row, col);
+				System.out.println("Visualization of Steps:");
+;				convertToString(numberedGrid, row, col);
 				
 				//stop timer and print out how long program took to solve puzzle
 				double duration = System.nanoTime() - startTime;
 				System.out.println();
-				System.out.println("Solved in " + duration/1000000000 + " seconds");
+				System.out.println("It only took me " + duration/1000000000 + " seconds to solve it!");
 				System.out.println();
 				
 				//prompts user if they want to solve another puzzle
@@ -72,3 +76,5 @@ public static void main(String[] args) {
 		
 		in.close();
 	}
+	
+}
