@@ -1,11 +1,12 @@
 package tracerSolver;
+
 import java.util.Scanner;
 import java.util.Vector;
 import java.util.LinkedList; 
 import java.util.Queue;
 import java.lang.Math;
 
-public class tracerSolver {
+public class TracerSolver {
 	private int[][] grid;
 	private int numRow;
 	private int numCol;
@@ -21,7 +22,7 @@ public class tracerSolver {
 	 * @param startRow: row component of starting position
 	 * @param startCol: column compoenent of starting position
 	 */
-	public tracerSolver(int row, int col, int startRow, int startCol) {
+	public TracerSolver(int row, int col, int startRow, int startCol) {
 		numRow = row;
 		numCol = col;
 		//construct grid
@@ -198,7 +199,7 @@ public class tracerSolver {
 			int startCol = in.nextInt();
 			
 			//constructs object
-			tracerSolver grid = new tracerSolver(row, col, startRow, startCol);
+			TracerSolver grid = new TracerSolver(row, col, startRow, startCol);
 			
 			//repeatedly asks the user if there are any spaces to mark
 			System.out.println("Would you like to remove any blocks? N for no; Any other key for Yes");
@@ -225,7 +226,10 @@ public class tracerSolver {
 				Vector<String> stringForm = pointToDirectionConverter(listOfMoves, startRow, startCol);
 				
 				//prints out solution steps in the form of directional movement
+				System.out.println();
+				System.out.println("Directional Instructions: ");
 				System.out.println(stringForm.toString());
+				System.out.println();
 				
 				//constructs and initializes a grid to give a visual representation of the solution
 				int[][] numberedGrid = new int[row][col];
@@ -234,12 +238,13 @@ public class tracerSolver {
 					int col1 = listOfMoves.elementAt(i - 1).getY();
 					numberedGrid[row1][col1] = i;
 				}
-				convertToString(numberedGrid, row, col);
+				System.out.println("Visualization of Steps:");
+;				convertToString(numberedGrid, row, col);
 				
 				//stop timer and print out how long program took to solve puzzle
 				double duration = System.nanoTime() - startTime;
 				System.out.println();
-				System.out.println("Solved in " + duration/1000000000 + " seconds");
+				System.out.println("It only took me " + duration/1000000000 + " seconds to solve it!");
 				System.out.println();
 				
 				//prompts user if they want to solve another puzzle
