@@ -1,14 +1,14 @@
 # tracerSolver
 
 Sam this is a reminder of how to use git for you to read. 
-
+======================================================================================================================
 To initilize a local repo, open terminal and navigate to the folder you want to init the repo at by using "cd <path>" to move down a repo.
   Ex: 
   type: "cd MyFolder" to goto the folder named "MyFolder"
         "cd MyFolder\SecondaryFolder\Project" to go directly to a specific location(the path may not be in mac syntax)
         
 The directory you are in is shown at the beginning of the line in terminal.
-======================================================================================================================
+
 * After arriving at a desired location, usually the highest level folder in the project folder, type "git init" to create a new repotitory 
 in that folder. A folder named ".git"should be created,though it may be hidden from you and you may need to change the mac settings to 
 show hidden files.
