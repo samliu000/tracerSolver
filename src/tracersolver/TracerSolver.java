@@ -160,7 +160,7 @@ public class tracerSolver {
 	 * @param startRow: starting row
 	 * @param startCol: starting column
 	 */
-	public static void convertToString(int[][] grid, int startRow, int startCol) {
+	public static void printSteps(int[][] grid) {
 		for(int i = 0; i < grid.length; i++) {
 			for(int j = 0; j < grid[0].length; j++) {
 				//formatting (spacing off if number of steps in directions > 99 steps)
@@ -173,7 +173,11 @@ public class tracerSolver {
 		}
 	}
 	
-	public static void convertStringToArrows(String[][] grid) {
+	/**
+	 * Prints arrows
+	 * @param grid: the grid to print out
+	 */
+	public static void printArrows(String[][] grid) {
 		for(int i = 0; i < grid.length; i++) {
 			for(int j = 0; j < grid[0].length; j++) {
 				if(grid[i][j] == null) {
@@ -186,6 +190,11 @@ public class tracerSolver {
 		}
 	}
 	
+	/**
+	 * Uses a list of directions to fill a 2D array with arrows representing directional movement
+	 * @param listDirections: a vector of strings representing directional movement
+	 * @return: a 2D array of arrows
+	 */
 	public String[][] convertToArrows(Vector<String> listDirections) {
 		String[][] gridArrows = new String[numRow][numCol];
 		gridArrows[startRow][startCol] = "X";
@@ -280,15 +289,17 @@ public class tracerSolver {
 					int col1 = listOfMoves.elementAt(i - 1).getY();
 					numberedGrid[row1][col1] = i;
 				}
+				
+				//Visualization using numbered steps
 				System.out.println("Visualization of Steps:");
-				convertToString(numberedGrid, row, col);
+				printSteps(numberedGrid);
 				System.out.println();
 				grid.convertToArrows(stringForm);
 				System.out.println();
 				
-				System.out.println();
+				//Visualization using arrows
 				System.out.println("Visualization using arrows: ");
-				convertStringToArrows(grid.convertToArrows(stringForm));
+				printArrows(grid.convertToArrows(stringForm));
 				System.out.println();
 				
 				//stop timer and print out how long program took to solve puzzle
