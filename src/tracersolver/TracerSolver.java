@@ -91,9 +91,12 @@ public class tracerSolver {
 	 * @return: true or false based on whether the puzzle is solved or not
 	 */
 	public boolean solveTracer(int currentRow, int currentCol) {
+		//base case
 		if(gridSolved()) {
 			return true;
-		} else {
+		} 
+		//recursive case
+		else {
 			//gets possible moves for current block
 			Queue<Point> possibleMoves = possibleMoves(currentRow, currentCol);
 			int size = possibleMoves.size();
