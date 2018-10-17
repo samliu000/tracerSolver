@@ -6,10 +6,12 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.lang.Math;
 
-public class TracerSolver {
+public class tracerSolver {
 	private int[][] grid;
 	private int numRow;
 	private int numCol;
+	private int startRow;
+	private int startCol;
 	private Vector<Point> directions;
 	
 	/**
@@ -22,9 +24,11 @@ public class TracerSolver {
 	 * @param startRow: row component of starting position
 	 * @param startCol: column compoenent of starting position
 	 */
-	public TracerSolver(int row, int col, int startRow, int startCol) {
+	public tracerSolver(int row, int col, int startRow, int startCol) {
 		numRow = row;
 		numCol = col;
+		this.startRow = startRow;
+		this.startCol = startCol;
 		//construct grid
 		grid = new int[row][col];
 		//a list of points that represent the solution to the tracer map
@@ -166,6 +170,41 @@ public class TracerSolver {
 		}
 	}
 	
+	public static void convertStringToArrows(String[][] grid) {
+		for(int i = 0; i < grid.length; i++) {
+			for(int j = 0; j < grid[0].length; j++) {
+				if(grid[i][j] == null) {
+					System.out.printf("%s",  "0 ");
+				} else {
+					System.out.printf("%s", grid[i][j]+ " ");
+				}
+			}
+			System.out.println();
+		}
+	}
+	
+	public String[][] convertToArrows(Vector<String> listDirections) {
+		String[][] gridArrows = new String[numRow][numCol];
+		gridArrows[startRow][startCol] = "X";
+		int currentRow = startRow;
+		int currentCol = startCol;
+		for(int i = 0; i < listDirections.size(); i++) {
+			if(listDirections.elementAt(i).equals("Right")) {
+				gridArrows[currentRow][currentCol + 1] = "→";
+				currentCol++;
+			} else if(listDirections.elementAt(i).equals("Left")) {
+				gridArrows[currentRow][currentCol - 1] = "←";
+				currentCol--;
+			} else if(listDirections.elementAt(i).equals("Up")) {
+				gridArrows[currentRow - 1][currentCol] = "↑";
+				currentRow--;
+			} else {
+				gridArrows[currentRow + 1][currentCol] = "↓";
+				currentRow++;
+			}
+		}
+		return gridArrows;
+	}
 	/**
 	 * Gives user the option to mark spaces
 	 * @param rowR: selected row
@@ -199,7 +238,7 @@ public class TracerSolver {
 			int startCol = in.nextInt();
 			
 			//constructs object
-			TracerSolver grid = new TracerSolver(row, col, startRow, startCol);
+			tracerSolver grid = new tracerSolver(row, col, startRow, startCol);
 			
 			//repeatedly asks the user if there are any spaces to mark
 			System.out.println("Would you like to remove any blocks? N for no; Any other key for Yes");
@@ -239,7 +278,15 @@ public class TracerSolver {
 					numberedGrid[row1][col1] = i;
 				}
 				System.out.println("Visualization of Steps:");
-;				convertToString(numberedGrid, row, col);
+				convertToString(numberedGrid, row, col);
+				System.out.println();
+				grid.convertToArrows(stringForm);
+				System.out.println();
+				
+				System.out.println();
+				System.out.println("Visualization using arrows: ");
+				convertStringToArrows(grid.convertToArrows(stringForm));
+				System.out.println();
 				
 				//stop timer and print out how long program took to solve puzzle
 				double duration = System.nanoTime() - startTime;
