@@ -1,4 +1,4 @@
-	public static void main(String[] args) {
+public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Begin?");
 		while(!in.next().toLowerCase().equals("n")) {
@@ -14,7 +14,7 @@
 			int startCol = in.nextInt();
 			
 			//constructs object
-			TracerSolver grid = new TracerSolver(row, col, startRow, startCol);
+			tracerSolver grid = new tracerSolver(row, col, startRow, startCol);
 			
 			//repeatedly asks the user if there are any spaces to mark
 			System.out.println("Would you like to remove any blocks? N for no; Any other key for Yes");
@@ -53,8 +53,18 @@
 					int col1 = listOfMoves.elementAt(i - 1).getY();
 					numberedGrid[row1][col1] = i;
 				}
+				
+				//Visualization using numbered steps
 				System.out.println("Visualization of Steps:");
-;				convertToString(numberedGrid, row, col);
+				printSteps(numberedGrid);
+				System.out.println();
+				grid.convertToArrows(stringForm);
+				System.out.println();
+				
+				//Visualization using arrows
+				System.out.println("Visualization using arrows: ");
+				printArrows(grid.convertToArrows(stringForm));
+				System.out.println();
 				
 				//stop timer and print out how long program took to solve puzzle
 				double duration = System.nanoTime() - startTime;
@@ -76,5 +86,3 @@
 		
 		in.close();
 	}
-	
-}
