@@ -1,6 +1,6 @@
 # tracerSolver
 
-Sam this is a reminder of how to use git for you to read. 
+Reminder of how to use git! - Thanks Nick!
 ======================================================================================================================
 To initilize a local repo, open terminal and navigate to the folder you want to init the repo at by using "cd <path>" to move down a repo.
   Ex: 
