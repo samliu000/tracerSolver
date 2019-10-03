@@ -3,7 +3,7 @@ TracerSolver
 Solves AppStore game *Fill one line puzzle game*
 
 How to play:
-* You given a starting block
+* You are given a starting block
 * Everything time you move the starting block (left, right, up, down), it fills another block
 * You must do this until the entire gameboard is filled
 
