@@ -1,6 +1,7 @@
 TracerSolver
 ======================================================================================================================
 Solves AppStore game *Fill one line puzzle game*. 
+
 **Check out FillSolver (my other Github repository). I made this program into an Android Application**
 
 How to play:
